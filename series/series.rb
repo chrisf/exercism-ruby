@@ -11,19 +11,9 @@ class Series
     @digits = digits_str
   end
 
-  def slices(slice_size)
-    raise ArgumentError if slice_size > @digits.size
+  def slices(size)
+    raise ArgumentError if size > @digits.size
 
-    series_sliced = []
-
-    for i in 0..@digits.size - slice_size
-      str = ""
-      for j in 0..slice_size-1
-        str += @digits[i+j]
-      end
-      series_sliced << str
-    end
-    
-    series_sliced
+    return @digits.chars.each_cons(size).map(&:join)
   end
 end
